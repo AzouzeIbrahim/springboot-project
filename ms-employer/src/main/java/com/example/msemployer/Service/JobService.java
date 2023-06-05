@@ -2,6 +2,7 @@ package com.example.msemployer.Service;
 
 
 
+import com.example.msemployer.Enums.CompetenceNom;
 import com.example.msemployer.Repositories.DemandeRepository;
 import com.example.msemployer.Repositories.EmployerRepository;
 import com.example.msemployer.Repositories.JobRepositories;
@@ -138,5 +139,15 @@ public class JobService {
     public List<Job> findJobByDurationBetween(String minDuration, String maxDuration) {
         return jobRepositories.findJobByDurationBetween(minDuration, maxDuration);
     }
+
+
+    public Long countJob() {
+        return jobRepositories.countJob();
+    }
+
+    public Long countjobBycomptencenom(CompetenceNom comptencenom) {
+        return jobRepositories.countJobByJobSkills(comptencenom);
+    }
+
 
 }

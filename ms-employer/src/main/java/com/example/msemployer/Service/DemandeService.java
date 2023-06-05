@@ -3,6 +3,7 @@ package com.example.msemployer.Service;
 
 import com.example.msemployer.Repositories.DemandeRepository;
 import com.example.msemployer.Repositories.JobRepositories;
+import com.example.msemployer.dto.DemandeDto;
 import com.example.msemployer.entities.Demande;
 import com.example.msemployer.entities.Job;
 import com.example.msjobseeker.Repositories.DemandeEmploiRepository;
@@ -41,25 +42,51 @@ public class DemandeService {
         return demandeRepository.findAll();
     }
 
-    @KafkaListener(topics = "demande-topic", groupId = "demande")
-    public void consume(DemandeEvent demandeEvent) {
-        LOGGER.info(String.format("Demande event recieved in demande service => %s", demandeEvent.toString()));
-
-//        String jobSeekerUrl = "http://localhost:8082/demande/dmandeur/" + demandeEvent.getDemandeEmploi().getDemandeur();
+//    @KafkaListener(topics = "demande-topic", groupId = "demande")
+//    public void consume(DemandeEvent demandeEvent) {
+//        LOGGER.info(String.format("Demande event recieved in demande service => %s", demandeEvent.toString()));
 //
-//        DemandeEvent demandeEvent1 =
-//        restTemplate.getForObject(jobSeekerUrl, DemandeEvent.class);
+////        String jobSeekerUrl = "http://localhost:8082/demande/dmandeur/" + demandeEvent.getDemandeEmploi().getDemandeur();
+////
+////        DemandeEvent demandeEvent1 =
+////        restTemplate.getForObject(jobSeekerUrl, DemandeEvent.class);
+//
+//        Demande demande = new Demande();
+//        demande.setIdDemande(demandeEvent.getDemandeEmploi().getIdDemande());
+//        demande.setDate(demandeEvent.getDemandeEmploi().getDate());
+//        demande.setCv(demandeEvent.getDemandeEmploi().getCv());
+//        demande.setSkills(demandeEvent.getDemandeEmploi().getSkills());
+//        demande.setLettreDeMotivation(demandeEvent.getDemandeEmploi().getLettreDeMotivation());
+//        demande.setStatus(demandeEvent.getDemandeEmploi().getStatus());
+//        //demande.getIdDemande(demandeEmploiRepository.findIddemandeurByIdDemande(demandeEvent.getDemandeEmploi().getIdDemande()));
+////        demande.setIdDemandeur(demandeEmploiRepository.findDemandeurByIdDemande(demandeEvent.getDemandeEmploi().getIdDemande()).getIdDemandeur());
+////        demande.setIdDemandeur(demandeEvent1.getDemandeEmploi().getIdDemande());
+//        demandeRepository.save(demande);
+//    }
 
+
+
+//    public void createDemande(DemandeDto demandeEvent) {
+//        Demande demande = new Demande();
+//        demande.setIdDemande(demandeEvent.getDemandeEmploi().getIdDemande());
+//        demande.setDate(demandeEvent.getDemandeEmploi().getDate());
+//        demande.setCv(demandeEvent.getDemandeEmploi().getCv());
+//        demande.setSkills(demandeEvent.getDemandeEmploi().getSkills());
+//        demande.setLettreDeMotivation(demandeEvent.getDemandeEmploi().getLettreDeMotivation());
+//        demande.setStatus(demandeEvent.getDemandeEmploi().getStatus());
+//
+//        demandeRepository.save(demande);
+//    }
+    public void createDemande(DemandeDto demandeEvent) {
         Demande demande = new Demande();
-        demande.setIdDemande(demandeEvent.getDemandeEmploi().getIdDemande());
-        demande.setDate(demandeEvent.getDemandeEmploi().getDate());
-        demande.setCv(demandeEvent.getDemandeEmploi().getCv());
-        demande.setSkills(demandeEvent.getDemandeEmploi().getSkills());
-        demande.setLettreDeMotivation(demandeEvent.getDemandeEmploi().getLettreDeMotivation());
-        demande.setStatus(demandeEvent.getDemandeEmploi().getStatus());
-        //demande.getIdDemande(demandeEmploiRepository.findIddemandeurByIdDemande(demandeEvent.getDemandeEmploi().getIdDemande()));
-//        demande.setIdDemandeur(demandeEmploiRepository.findDemandeurByIdDemande(demandeEvent.getDemandeEmploi().getIdDemande()).getIdDemandeur());
-//        demande.setIdDemandeur(demandeEvent1.getDemandeEmploi().getIdDemande());
+//        LOGGER.info(String.format("Demande event recieved in demande service => %s", demandeEvent.toString()));
+        demande.setIdDemande(demandeEvent.getIdDemande());
+        demande.setDate(demandeEvent.getDate());
+        demande.setCv(demandeEvent.getCv());
+        demande.setSkills(demandeEvent.getSkills());
+        demande.setLettreDeMotivation(demandeEvent.getLettreDeMotivation());
+        demande.setStatus(demandeEvent.getStatus());
+        LOGGER.info(String.format("Demande event recieved in demande service => %s", demandeEvent.toString()));
         demandeRepository.save(demande);
     }
 

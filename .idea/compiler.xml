@@ -10,7 +10,6 @@
         <module name="base-domains" />
         <module name="ms-employer" />
         <module name="ms-jobseeker" />
-        <module name="ms-compte" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

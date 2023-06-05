@@ -1,5 +1,6 @@
 package com.example.msemployer.Repositories;
 
+import com.example.msemployer.Enums.CompetenceNom;
 import com.example.msemployer.entities.Adresse;
 import com.example.msemployer.entities.Demande;
 import com.example.msemployer.entities.Employer;
@@ -47,7 +48,11 @@ public interface JobRepositories extends JpaRepository<Job,Long>, JpaSpecificati
     @Query("select j from Job j where j.Duration>=:minDuration and j.Duration<=:maxDuration")
     public List<Job> findJobByDurationBetween(String minDuration,String maxDuration);
 
+   @Query("select count(j) from Job j")
+   Long countJob();
 
+   @Query("select count(j) from Job j where j.jobSkills=:jobSkills")
+    Long countJobByJobSkills(CompetenceNom jobSkills);
 
 
 }

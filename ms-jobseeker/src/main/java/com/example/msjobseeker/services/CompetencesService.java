@@ -64,18 +64,18 @@ public class CompetencesService {
     }
 
 
-    public ResponseEntity<Object> getAllDemandeursByCompetence(CompetenceNom competence) {
-        try {
-            List<Demandeur> demandeurs = demandeurEmploiRepository.findByCompetencesNom(competence);
-            if (demandeurs.isEmpty()) {
-                return new ResponseEntity<>("Aucun demandeur trouvé avec cette compétence", HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(demandeurs, HttpStatus.OK);
-        } catch (Exception e) {
-            System.out.println(e);
-            return new ResponseEntity<>("Une erreur s'est produite", HttpStatus.BAD_REQUEST);
-        }
-    }
+//    public ResponseEntity<Object> getAllDemandeursByCompetence(String competence) {
+//        try {
+//            List<Demandeur> demandeurs = demandeurEmploiRepository.findByCompetencesNom(competence);
+//            if (demandeurs.isEmpty()) {
+//                return new ResponseEntity<>("Aucun demandeur trouvé avec cette compétence", HttpStatus.NOT_FOUND);
+//            }
+//            return new ResponseEntity<>(demandeurs, HttpStatus.OK);
+//        } catch (Exception e) {
+//            System.out.println(e);
+//            return new ResponseEntity<>("Une erreur s'est produite", HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
 //    public ResponseEntity<Object> deleteCompetence(Long id){
 //        try {

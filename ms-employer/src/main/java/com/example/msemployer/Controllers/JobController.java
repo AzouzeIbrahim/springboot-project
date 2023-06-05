@@ -1,6 +1,7 @@
 package com.example.msemployer.Controllers;
 
 
+import com.example.msemployer.Enums.CompetenceNom;
 import com.example.msemployer.Service.EmployerConsumerService;
 import com.example.msemployer.Service.JobService;
 import com.example.msemployer.entities.Demande;
@@ -112,5 +113,15 @@ public class JobController {
         return jobService.findJobByDurationBetween(minDuration, maxDuration);
     }
 
+
+    @GetMapping("/countjob")
+    public Long countJob() {
+        return jobService.countJob();
+    }
+
+    @GetMapping("/countJobByCompetence/{competence}")
+    public Long countJobByCompetence(CompetenceNom competence){
+        return jobService.countjobBycomptencenom(competence);
+    }
 
 }

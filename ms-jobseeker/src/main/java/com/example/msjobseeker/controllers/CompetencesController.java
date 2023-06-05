@@ -28,10 +28,10 @@ public class CompetencesController {
         return competencesService.getCompetencesByIdDemandeur(id);
     }
 
-    @GetMapping("demandeurs-par-competence/{competence}")
-    ResponseEntity<Object> getAllDemandeursByCompetence(@PathVariable("competence") CompetenceNom competence){
-        return competencesService.getAllDemandeursByCompetence(competence);
-    }
+//    @GetMapping("demandeurs-par-competence/{competence}")
+//    ResponseEntity<Object> getAllDemandeursByCompetence(@PathVariable("competence") String competence){
+//        return competencesService.getAllDemandeursByCompetence(competence);
+//    }
 
     @DeleteMapping("/{nom}")
     public ResponseEntity<Void> deleteByNomCompetence(@PathVariable CompetenceNom nom) {

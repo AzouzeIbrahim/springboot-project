@@ -1,6 +1,6 @@
 package com.example.msjobseeker.controllers;
 
-import com.example.mscompte.dto.EmployerEvent;
+
 import com.example.msjobseeker.Repositories.DemandeEmploiRepository;
 import com.example.msjobseeker.Repositories.DemandeurEmploiRepository;
 import com.example.msjobseeker.dto.DemandeEvent;
@@ -39,13 +39,13 @@ public class DemandeControllers {
     @PostMapping("/creation/{id}")
         public ResponseEntity<Object> createDemande(@RequestBody DemandeEmploi demandeEmploi, @PathVariable Long id) {
 //        demandeEmploi.setIdDemande(UUID.randomUUID().getLeastSignificantBits() );
-        demandeEmploi.setIdDemande(id);
+//        demandeEmploi.setIdDemande(id);
         DemandeEvent demandeEvent = new DemandeEvent();
         demandeEvent.setDemandeEmploi(demandeEmploi);
 //        demandeEvent.getDemandeEmploi().setDemandeur(demandeurEmploiRepository.findByIdDemandeur(id));
 //        demandeEvent.getDemandeEmploi().setDemandeur(demandeurEmploiRepository.findById(id).get());
 //        LOGGER.info(String.format("this looooooooooooooooooooooooooooooog",  demandeEvent.getDemandeEmploi().getDemandeur().getIdDemandeur().toString()));
-        demandeEmploiService.sendMessage(demandeEvent);
+        demandeEmploiService.sendDemandeEmploi(demandeEmploi);
         return demandeEmploiService.creationDemandeEmploi(demandeEmploi,id);
     }
 

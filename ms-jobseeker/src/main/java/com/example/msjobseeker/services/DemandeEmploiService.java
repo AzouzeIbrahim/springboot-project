@@ -7,6 +7,9 @@ import com.example.msjobseeker.Repositories.DemandeurEmploiRepository;
 import com.example.msjobseeker.dto.DemandeEvent;
 import com.example.msjobseeker.entities.DemandeEmploi;
 import com.example.msjobseeker.entities.Demandeur;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,29 +24,54 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+
 @Service
+@Slf4j
 public class DemandeEmploiService {
     private static final Logger LOGGER = LoggerFactory.getLogger(DemandeEmploiService.class);
 
     @Autowired
     DemandeEmploiRepository demandeEmploiRepository;
 
-    private NewTopic topic;
-    private KafkaTemplate<String, DemandeEvent> kafkaTemplate;
+//    private NewTopic topic;
+//    private KafkaTemplate<String, DemandeEvent> kafkaTemplate;
+//
+//    public DemandeEmploiService(NewTopic topic, KafkaTemplate<String, DemandeEvent> kafkaTemplate) {
+//        this.topic = topic;
+//        this.kafkaTemplate = kafkaTemplate;
+//    }
+//
+//    public void sendMessage(DemandeEvent demandeEvent){
+////        kafkaTemplate.send(topic.name(),employerEvent);
+//        LOGGER.info(String.format("DemandeEvent => %s", demandeEvent.toString()));
+//        Message<DemandeEvent> message = MessageBuilder
+//                .withPayload(demandeEvent)
+//                .setHeader(KafkaHeaders.TOPIC, topic.name())
+//                .build();
+//        kafkaTemplate.send(message);
+//    }
 
-    public DemandeEmploiService(NewTopic topic, KafkaTemplate<String, DemandeEvent> kafkaTemplate) {
-        this.topic = topic;
+
+    private final ObjectMapper objectMapper;
+    private final KafkaTemplate<String, String> kafkaTemplate;
+
+    @Autowired
+    public DemandeEmploiService(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
         this.kafkaTemplate = kafkaTemplate;
+        this.objectMapper = objectMapper;
     }
 
-    public void sendMessage(DemandeEvent demandeEvent){
-//        kafkaTemplate.send(topic.name(),employerEvent);
-        LOGGER.info(String.format("DemandeEvent => %s", demandeEvent.toString()));
-        Message<DemandeEvent> message = MessageBuilder
-                .withPayload(demandeEvent)
-                .setHeader(KafkaHeaders.TOPIC, topic.name())
-                .build();
-        kafkaTemplate.send(message);
+    public String sendDemandeEmploi(DemandeEmploi demandeEmploi) {
+        try {
+            String jobRequestAsMessage = objectMapper.writeValueAsString(demandeEmploi);
+            kafkaTemplate.send("demande", jobRequestAsMessage);
+            log.info("job request produced {}", jobRequestAsMessage);
+            return "message sent";
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "failed to send message";
+        }
     }
 
 //    public DemandeEmploi createdemande(DemandeEmploi demandee,Long id) {
@@ -74,6 +102,7 @@ public class DemandeEmploiService {
                 return new ResponseEntity<>("Item not found", HttpStatus.NOT_FOUND);
             }
             DemandeEmploi demandeEmploi = new DemandeEmploi();
+            demandeEmploi.setIdDemande(body.getIdDemande());
             demandeEmploi.setDate(body.getDate());
             demandeEmploi.setCv(body.getCv());
             demandeEmploi.setSkills(body.getSkills());

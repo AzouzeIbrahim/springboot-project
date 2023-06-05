@@ -14,6 +14,8 @@ import java.util.List;
 @Entity
 public class Employer {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmployer  ;
@@ -22,8 +24,7 @@ public class Employer {
     private String lastName;
     private String email;
     private String company;
-    @Embedded
-    private Adresse address;
+    private String address;
     private String city;
 
     private int postalCode;

@@ -30,6 +30,16 @@ public class DemandeurControllers {
         return new ResponseEntity<>(demandeurs, HttpStatus.OK);
     }
 
+    @PutMapping("/update/{id}" )
+    public Demandeur updateDemandeur(@PathVariable Long id,@RequestBody Demandeur demandeur) {
+        return demandeurEmploiService.updateDemandeur(id,demandeur);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteDemandeur(@PathVariable Long id) {
+        demandeurEmploiService.deleteDemandeur(id);
+    }
+
 
 
 

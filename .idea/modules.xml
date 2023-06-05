@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/base-domains/base-domains.iml" filepath="$PROJECT_DIR$/base-domains/base-domains.iml" />
       <module fileurl="file://$PROJECT_DIR$/erecrutement.iml" filepath="$PROJECT_DIR$/erecrutement.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ms-compte/ms-compte.iml" filepath="$PROJECT_DIR$/ms-compte/ms-compte.iml" />
       <module fileurl="file://$PROJECT_DIR$/ms-employer/ms-employer.iml" filepath="$PROJECT_DIR$/ms-employer/ms-employer.iml" />
       <module fileurl="file://$PROJECT_DIR$/ms-jobseeker/ms-jobseeker.iml" filepath="$PROJECT_DIR$/ms-jobseeker/ms-jobseeker.iml" />
     </modules>

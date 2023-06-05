@@ -1,7 +1,7 @@
 package com.example.msjobseeker.dto;
 
 
-import com.example.mscompte.entity.Adresse;
+import com.example.msjobseeker.entities.Adresse;
 import javax.persistence.*;
 
 import com.example.msjobseeker.enums.Sexe;

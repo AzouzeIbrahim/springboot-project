@@ -24,4 +24,7 @@ public class Competences {
     @JoinColumn(name = "idDemandeur", nullable = false)
     private Demandeur demandeur;
 
+
+
+
 }

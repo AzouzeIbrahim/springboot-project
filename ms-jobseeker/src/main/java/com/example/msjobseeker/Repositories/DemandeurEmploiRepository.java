@@ -10,7 +10,7 @@ import java.util.List;
 @RepositoryRestResource
 public interface DemandeurEmploiRepository extends JpaRepository<Demandeur, Long> {
 
-    List<Demandeur> findByCompetencesNom(CompetenceNom competences);
+//    List<Demandeur> findByCompetencesNom(String competences);
 
     Demandeur findByIdDemandeur(Long idDemandeur);
 

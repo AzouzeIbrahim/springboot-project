@@ -1,6 +1,6 @@
 package com.example.msjobseeker.entities;
 
-import com.example.mscompte.entity.Adresse;
+
 import com.example.msjobseeker.enums.Civilite;
 import com.example.msjobseeker.enums.Handicap;
 import com.example.msjobseeker.enums.Sexe;
@@ -25,13 +25,14 @@ public class Demandeur {
     private Long idDemandeur;
     private String nom;
     private String prenom;
+    private String email;
 
-    @Enumerated(EnumType.STRING)
-    private Sexe sexe;
+//    @Enumerated(EnumType.STRING)
+    private String sexe;
     private Date dateDeNaissance;
     private String lieuDeNaissance;
-    @Embedded
-    private Adresse adresse;
+
+    private String adresse;
     private String codePostal;
     private String numeroTel;
     private String nationalite ;
@@ -43,10 +44,10 @@ public class Demandeur {
     private Handicap handicap;
     @Enumerated(EnumType.STRING)
     private Civilite civilite;
-    @OneToMany(mappedBy = "demandeur", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<Competences> competences;
+//    @OneToMany(mappedBy = "demandeur", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+//    @JsonIgnore
+//    private Set<Competences> competences;
 
 
     private String niveauEtudes;
@@ -54,10 +55,10 @@ public class Demandeur {
     @ElementCollection
     private List<String> langues;
 
-//    @OneToMany(mappedBy = "demandeur", fetch = FetchType.LAZY,
-//            cascade = CascadeType.ALL)
-//    @JsonIgnore
-//    private Set<DemandeEmploi> demandeEmplois;
+
+    @ElementCollection
+    private List<String> competences;
+
 
     @OneToMany(mappedBy = "demandeur", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
@@ -65,9 +66,15 @@ public class Demandeur {
     private Set<ExperienceProfessionnelle> experienceProfessionnelles;
 
 
-    public void setSexe(com.example.mscompte.enums.Sexe sexe) {
-    }
+//    @OneToMany(mappedBy = "demandeur", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+//    @JsonIgnore
+//    private Set<DemandeEmploi> demandeEmplois;
 
+
+//    public void setSexe(com.example.mscompte.enums.Sexe sexe) {
+//    }
+//
 
 
 
