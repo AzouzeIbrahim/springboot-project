@@ -36,17 +36,20 @@ public class DemandeControllers {
         this.demandeEmploiService = demandeEmploiService;
     }
 
-    @PostMapping("/creation/{id}")
-        public ResponseEntity<Object> createDemande(@RequestBody DemandeEmploi demandeEmploi, @PathVariable Long id) {
+    @PostMapping("/creation/{id}/{idJob}")
+        public ResponseEntity<Object> createDemande(@RequestBody DemandeEmploi demandeEmploi, @PathVariable Long id,@PathVariable Long idJob){
 //        demandeEmploi.setIdDemande(UUID.randomUUID().getLeastSignificantBits() );
 //        demandeEmploi.setIdDemande(id);
         DemandeEvent demandeEvent = new DemandeEvent();
         demandeEvent.setDemandeEmploi(demandeEmploi);
+        Demandeur demandeur = demandeurEmploiRepository.findByIdDemandeur(id);
+        demandeEmploi.setDemandeurEmail(demandeur.getEmail());
+        demandeEmploi.setIdjob(idJob);
 //        demandeEvent.getDemandeEmploi().setDemandeur(demandeurEmploiRepository.findByIdDemandeur(id));
 //        demandeEvent.getDemandeEmploi().setDemandeur(demandeurEmploiRepository.findById(id).get());
 //        LOGGER.info(String.format("this looooooooooooooooooooooooooooooog",  demandeEvent.getDemandeEmploi().getDemandeur().getIdDemandeur().toString()));
         demandeEmploiService.sendDemandeEmploi(demandeEmploi);
-        return demandeEmploiService.creationDemandeEmploi(demandeEmploi,id);
+        return demandeEmploiService.creationDemandeEmploi(demandeEmploi,id,idJob);
     }
 
     @GetMapping("/{id}")

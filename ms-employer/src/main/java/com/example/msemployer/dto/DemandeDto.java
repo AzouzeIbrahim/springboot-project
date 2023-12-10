@@ -30,6 +30,10 @@ public class DemandeDto {
    @Enumerated(EnumType.STRING)
    private StatusDemandeEmploi status;
 
+   private String DemandeurEmail;
+
+   private Long idjob;
+
    // Add a constructor that accepts a String argument for deserialization
    public DemandeDto(String json) throws IOException {
       ObjectMapper objectMapper = new ObjectMapper();
@@ -40,6 +44,9 @@ public class DemandeDto {
       this.skills = demandeDto.skills;
       this.lettreDeMotivation = demandeDto.lettreDeMotivation;
       this.status = demandeDto.status;
+      this.DemandeurEmail = demandeDto.DemandeurEmail;
+      this.idjob = demandeDto.idjob;
+
    }
 
 }

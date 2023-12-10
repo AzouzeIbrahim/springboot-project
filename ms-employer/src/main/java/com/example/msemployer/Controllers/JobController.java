@@ -120,8 +120,13 @@ public class JobController {
     }
 
     @GetMapping("/countJobByCompetence/{competence}")
-    public Long countJobByCompetence(CompetenceNom competence){
+    public Long countJobByCompetence(@PathVariable  CompetenceNom competence){
         return jobService.countjobBycomptencenom(competence);
     }
 
+//    count jobs by mounth
+    @GetMapping("/countJobByMonth/{month}")
+    public Long countJobByMonth(@PathVariable  int month){
+        return jobService.countJobsByMonth(month);
+    }
 }

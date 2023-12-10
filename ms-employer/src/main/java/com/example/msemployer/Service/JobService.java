@@ -149,5 +149,9 @@ public class JobService {
         return jobRepositories.countJobByJobSkills(comptencenom);
     }
 
+    public Long  countJobsByMonth(int month) {
+        return jobRepositories.countJobsByMonth(month);
+    }
+
 
 }

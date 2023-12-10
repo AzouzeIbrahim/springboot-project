@@ -96,7 +96,7 @@ public class DemandeEmploiService {
     @Autowired
     CompetencesRepository competencesRepository;
 
-    public ResponseEntity<Object> creationDemandeEmploi(DemandeEmploi body, Long idDemandeur){
+    public ResponseEntity<Object> creationDemandeEmploi(DemandeEmploi body, Long idDemandeur,Long idJob){
         try {
             if(demandeurEmploiRepository.existsById(idDemandeur) == false){
                 return new ResponseEntity<>("Item not found", HttpStatus.NOT_FOUND);

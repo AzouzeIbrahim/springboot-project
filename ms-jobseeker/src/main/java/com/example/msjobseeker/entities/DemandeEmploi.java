@@ -20,6 +20,7 @@ import java.util.List;
 @Builder
 public class DemandeEmploi {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idDemande;
     private Date date;
     private String cv;
@@ -29,6 +30,9 @@ public class DemandeEmploi {
     @Enumerated(EnumType.STRING)
     private StatusDemandeEmploi status;
 
+    private String DemandeurEmail;
+
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idDemandeur", nullable = false)
@@ -37,6 +41,6 @@ public class DemandeEmploi {
 
 
 
-
+    private Long idjob;
 
 }

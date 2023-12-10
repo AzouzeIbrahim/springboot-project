@@ -18,7 +18,6 @@ import java.util.List;
 @Entity
 public class Demande {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idDemande;
     private Date date;
     private String cv;
@@ -31,9 +30,14 @@ public class Demande {
     private Boolean acceptedforinterview;
 
 
+    private String DemandeurEmail;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     private Job jobs;
+
+
+    private Long idjob;
+
 
 
 

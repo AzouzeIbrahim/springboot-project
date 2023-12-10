@@ -8,6 +8,7 @@ import com.example.msemployer.entities.Job;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
@@ -53,6 +54,12 @@ public interface JobRepositories extends JpaRepository<Job,Long>, JpaSpecificati
 
    @Query("select count(j) from Job j where j.jobSkills=:jobSkills")
     Long countJobByJobSkills(CompetenceNom jobSkills);
+
+
+
+
+    @Query("SELECT COUNT(j) FROM Job j WHERE MONTH(j.jobPublishedDate) = :month")
+    Long countJobsByMonth(@Param("month") int month);
 
 
 }

@@ -22,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DemandeService {
@@ -86,6 +87,11 @@ public class DemandeService {
         demande.setSkills(demandeEvent.getSkills());
         demande.setLettreDeMotivation(demandeEvent.getLettreDeMotivation());
         demande.setStatus(demandeEvent.getStatus());
+        demande.setDemandeurEmail(demandeEvent.getDemandeurEmail());
+        Optional<Job> optionalJob = jobRepository.findById(demandeEvent.getIdjob());
+        Job job = optionalJob.orElse(null);
+        demande.setJobs(job);
+
         LOGGER.info(String.format("Demande event recieved in demande service => %s", demandeEvent.toString()));
         demandeRepository.save(demande);
     }

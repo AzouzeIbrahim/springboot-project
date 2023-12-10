@@ -25,6 +25,8 @@ public class consume {
     private EmployerConsumerService employerConsumerService;
     private DemandeService demandeService;
 
+
+
     private final ModelMapper modelMapper;
 
     public consume(ObjectMapper objectMapper, EmployerConsumerService employerConsumerService, DemandeService demandeService,ModelMapper modelMapper) {
